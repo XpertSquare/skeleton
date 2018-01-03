@@ -1,14 +1,73 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Skeleton</title>
+  	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Appoinment and customer management system">
+    <meta name="author" content="Marius Serban">
+    <title>Calendo</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application' , 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-    <%= yield %>
+  	
+  	    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+      <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">calendo</a>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="schedule.html">Schedule</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="#">Customers</a>
+          </li>
+		  <li class="nav-item">
+            <a class="nav-link" href="#">Staff</a>
+          </li>
+        </ul>
+		<ul class="navbar-nav mt-2 mt-md-0">
+          <li class="nav-item ">
+            <a class="nav-link" href="#">Profile</a>
+          </li>
+		  <li class="nav-item ">
+            <a class="nav-link" href="#">Settings</a>
+          </li>
+		 </ul> 
+       
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="main-content">
+        <div class="container">
+			<%= render partial: "layouts/flash_messages", locals: { flash: flash } %> 
+		    <%= yield %>
+		 </div>
+      </div>
+
+    </div><!-- /.container -->
+
+
+  	<%= javascript_include_tag 'https://code.jquery.com/jquery-3.2.1.slim.min.js' %>
+  	<%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js' %>
+  	<%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js' %>
+  	
+   <script type="text/javascript">
+$(document).ready(function() {
+	console.log('Ready...');
+});
+</script>
   </body>
 </html>
