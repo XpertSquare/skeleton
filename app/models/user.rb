@@ -1,10 +1,9 @@
+
+
 class User < ApplicationRecord
   has_secure_password
   has_many :memberships
   has_many :accounts, :through => :memberships, :dependent => :destroy
-  
-  attr_accesible :username, :email, :display_name, :password, :password_confirmation
-  
   
   before_create  { generate_token(:auth_token) }
   

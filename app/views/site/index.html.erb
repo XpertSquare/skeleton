@@ -1,2 +1,26 @@
 <h1>Site#index</h1>
 <p>Find me in app/views/site/index.html.erb</p>
+
+<div class="row" style="padding:0px 20px 40px 20px; ">
+			<div class="col-md-12">
+				<h2 class="center" style="margin-bottom:30px;">Register for a 90-day trial. It's free. It's easy.</h2>				
+			</div>
+			<%= form_for @registration, :html => {:class => "form-inline"} do |f| %>			
+			  <div class="form-group" style="margin-right:10px;">			    
+			    <%= f.text_field :name,  :class=>'form-control', :placeholder=>"Your name" %>
+			  </div>  
+			  <div class="form-group" style="margin-right:10px;">			    
+			    <%= f.text_field :business_name,  :class=>'form-control', :placeholder=>"Your company name" %>
+			  </div>  			  
+			  <div class="form-group" style="margin-right:10px;">			    
+			    <%= f.email_field :email,  :class=>'form-control', :placeholder=>"Your email" %>
+			  </div>  			  
+		
+				<%= f.submit 'Create my account', :class => 'btn btn-success' %>
+				
+			<% end %>	
+				
+			<div class="col-md-12" style="margin-top:10px;">
+				<span id="policy">By creating an account you agree with the Calendo's <a onclick="window.open(this.href); return false;" href="terms-of-service.html">Terms of Service</a> and <a onclick="window.open(this.href); return false;" href="privacy-policy.html">Privacy Policy</a></span>
+			</div>
+		</div>
