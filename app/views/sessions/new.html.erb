@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calendo | Account login </title>
+    <%= stylesheet_link_tag    'application' , 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css', media: 'all' %>
+  <style>
+  	body.login {
+  		background-color: rgba(240, 240, 240, 1);
+    	color: #7F7F7F;
+    	font-family: 'Open+Sans',sans-serif;
+    	font-size: 13px;
+	}
+	body.login .main-login {
+    	margin-top: 60px;
+	}
+	body.login .logo {
+    	padding: 20px;
+    	
+    	font-size: 25px;
+    	margin-left: 0;
+    	min-width: 210px;
+	}
+	body.login .box-login, body.login .box-forgot, body.login .box-register {
+    	background: none repeat scroll 0 0 #FFFFFF;
+    	border-radius: 3px;
+    	box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    	overflow: hidden;
+    	padding: 15px;
+	}
+	span.input-icon, span.input-help {
+    	display: block;
+    	position: relative;
+	}
+	.input-icon > [class*="fa-"], .input-icon > [class*="clip-"] {
+	    bottom: 0;
+	    color: #909090;
+	    display: inline-block;
+	    font-size: 14px;
+	    left: 5px;
+	    line-height: 35px;
+	    padding: 0 3px;
+	    position: absolute;
+	    top: 0;
+	    z-index: 2;
+	}
+	.input-icon > input {
+	    padding-left: 25px;
+	    padding-right: 6px;
+	}
+	.field_with_errors > input {
+	    padding-left: 25px;
+	    padding-right: 6px;
+	}
+	.field_with_errors .form-control {
+    	border-color: #A94442;
+    	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+	}
+	body.login a.forgot {
+	    color: #909090;
+	    font-size: 12px;
+	    position: absolute;
+	    right: 10px;
+	    text-shadow: 1px 1px 1px #FFFFFF;
+	    top: 9px;
+	}
+	.help-block{
+		color: #A94442;
+	}
+	a, a:focus, a:hover, a:active {
+	    outline: 0 none !important;
+	}
+  </style>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    	<%= javascript_include_tag 'https://code.jquery.com/jquery-3.2.1.slim.min.js' %>
+  	<%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js' %>
+  	<%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js' %>
+  	
+
+</head>
+<body class="login">  
+	<div class="main-login col-sm-4 col-sm-offset-4">
+		<div class="logo">
+			<div>
+				<div class="img-circle" style="width:8px; height:8px; background-color:#1abc9c; float:left; margin-right:2px;margin-bottom:2px;">
+				</div>
+				<div class="img-circle" style="width:8px; height:8px; background-color:#AEAEAE; float:left; margin-right:2px;margin-bottom:2px;">
+				</div>
+				<div class="img-circle" style="width:8px; height:8px; background-color:#AEAEAE; float:left; margin-right:2px;margin-bottom:2px;">				
+				</div>
+				<div class="img-circle" style="width:8px; height:8px; background-color:#AEAEAE; clear:both; float:left; margin-right:2px;margin-bottom:2px;">
+				</div>
+				<div class="img-circle" style="width:8px; height:8px; background-color:#d35400; float:left; margin-right:2px;margin-bottom:2px;">
+				</div>
+				<div class="img-circle" style="width:8px; height:8px; background-color:#3498db; float:left; margin-right:2px;margin-bottom:2px;">				
+				</div>
+				<div class="img-circle" style="width:8px; height:8px; background-color:#AEAEAE; clear:both; float:left; margin-right:2px;margin-bottom:2px;">
+				</div>
+				<div class="img-circle" style="width:8px; height:8px; background-color:#9b59b6; float:left; margin-right:2px;margin-bottom:2px;">
+				</div>
+				<div class="img-circle" style="width:8px; height:8px; background-color:#AEAEAE; float:left; margin-right:2px;margin-bottom:2px;">				
+				</div>
+			</div>
+	  		<span>Calendo</span>
+		</div>
+		<div class="box-login">
+			<h3>Log in to your account</h3>
+			<p> Please enter your email and password to log in. </p>
+			<% if @login.errors.any? %>
+			    <div id="error_explanation" class="alert alert-danger">
+			      <h4><%= pluralize(@login.errors.count, "error") %> prohibited the login process</h4>			      
+			    </div>
+			  <% end %>
+			<%= form_for @login, :url=>sessions_path,  :html => {:class => "form-login", :role=>"form"} do |f| %>
+			
+			<fieldset>
+				<div class="form-group">
+					<span class="input-icon">
+				    	<%= f.text_field :email, :class=>'form-control', :placeholder =>"Your email" %>
+						<i class="fa fa-envelope"></i>
+						<% if @login.errors[:email].present? %>
+							<span class="help-block"><%=:email.to_s.humanize  + ' ' +  @login.errors[:email].join(", ")%></span>
+						<% end %> 
+					</span>	
+				</div>
+				<div class="form-group">
+					<span class="input-icon">
+				    	<%= f.password_field :password, :class=>'form-control', :placeholder =>"Password" %>
+						<i class="fa fa-lock"></i> 
+						<a class="forgot" href="#"> I forgot my password </a>
+						<% if @login.errors[:password].present? %>
+							<span class="help-block"><%=:password.to_s.humanize  + ' ' +  @login.errors[:password].join(", ")%></span>
+						<% end %> 
+					</span>	
+				</div>
+				<div class="form-actions">
+					<label class="checkbox-inline" for="remember_me" style="margin-top:4px;">
+				    	<%= f.check_box :remember_me, {checked: true}%> Remember me
+				    </label>
+				    <button class="btn btn-success pull-right" type="submit" name="commit">Log me in &nbsp;<i class="fa fa-arrow-circle-right"></i></button>
+				    
+				</div>				
+			  </fieldset>		 
+				
+			<% end %>
+		</div>
+	</div>
+   <script type="text/javascript">
+$(document).ready(function() {
+	console.log('Ready...');
+});
+</script>
+</body>
+</html>
