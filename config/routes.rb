@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'site/index'
+  get '/site/pricing', as: 'pricing'
 
   resources :registrations, only: [:index, :create]
   resources :accounts
