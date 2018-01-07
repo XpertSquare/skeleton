@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+
+  get 'dashboard/index'
+
   get 'site/index'
   get '/site/pricing', as: 'pricing'
 
@@ -12,5 +16,9 @@ Rails.application.routes.draw do
   get 'logout'=>'sessions#destroy'
   
   resources :sessions, only: [:create, :destroy]
+  
+  namespace :admin do
+    get '/' => 'dashboard#index'
+  end
   
 end

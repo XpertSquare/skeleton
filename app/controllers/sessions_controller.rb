@@ -23,8 +23,10 @@ class SessionsController < ApplicationController
                                             :domain => '.lvh.me' }
         end
         
-          logger.debug  "You are now logged in! " + user.account.name   + " +++  " + return_url
-          redirect_to admin_url(:subdomain=>user.account.subdomain), :notice => "You are now logged in! " + user.account.name  + " +++  " + return_url  
+          @account = user.accounts.first
+          
+          logger.debug  "You are now logged in! " + @account.name   + " +++  " + return_url
+          redirect_to admin_url(:subdomain=>@account.subdomain), :notice => "You are now logged in! " + @account.name  + " +++  " + return_url  
           #redirect_to return_url, :notice => "You are now logged in! " + user.account.id.to_s  + " +++  " + return_url
          
       else
